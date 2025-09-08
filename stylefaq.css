@@ -1,5 +1,4 @@
-@charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100..900&display=swap");
 * {
   box-sizing: border-box;
   font-family: "Roboto Condensed", sans-serif;
@@ -10,6 +9,11 @@ body {
   font-size: 18px;
   font-family: "Roboto Condensed", sans-serif;
 }
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
 
 .ponto {
   display: flex;
@@ -19,14 +23,27 @@ body {
   padding-top: 6.5vw;
   padding-left: 6rem;
 }
-
 .ponto img {
   width: 1.5rem;
   height: 1.5rem;
 }
-
 .ponto h2 {
   font-size: 1.5rem;
+}
+@media (max-width: 992px) {
+  .ponto {
+    padding-left: 2rem;
+    padding-top: 100px;
+  }
+}
+@media (max-width: 480px) {
+  .ponto {
+    padding-left: 1rem;
+    padding-top: 150px;
+  }
+  .ponto h2 {
+    font-size: 1.3rem;
+  }
 }
 
 #cabecalho {
@@ -41,39 +58,33 @@ body {
   transition: background 0.3s ease, padding 0.3s ease, -webkit-backdrop-filter 0.3s ease;
   transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
   transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease, -webkit-backdrop-filter 0.3s ease;
-  background: #a80c11; /* vermelho sólido */
+  background: #a80c11;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
 }
-
 #cabecalho.scrolled {
-  background: rgba(168, 12, 17, 0.75); /* vermelho translúcido */
+  background: rgba(168, 12, 17, 0.75);
   -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px); /* efeito vidro */
+          backdrop-filter: blur(6px);
 }
-
 #cabecalho .logo img {
   width: 140px;
   height: auto;
 }
-
 #cabecalho .menu {
   display: flex;
   gap: 25px;
 }
-
 #cabecalho .menu button {
   background: none;
   border: none;
   cursor: pointer;
-  color: white;
+  color: #ffffff;
   font-weight: 600;
-  font-family: "Roboto Condensed", sans-serif;
   font-size: 1rem;
   transition: all 0.3s ease;
   position: relative;
 }
-
 #cabecalho .menu button::after {
   content: "";
   position: absolute;
@@ -81,35 +92,51 @@ body {
   height: 2px;
   left: 0;
   bottom: -4px;
-  background: white;
+  background: #ffffff;
   transition: 0.3s;
 }
-
 #cabecalho .menu button:hover {
   color: #ffdddd;
 }
-
 #cabecalho .menu button:hover::after {
   width: 100%;
+}
+@media (max-width: 992px) {
+  #cabecalho {
+    padding: 0.7rem 2rem;
+  }
+}
+@media (max-width: 480px) {
+  #cabecalho {
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+  }
+  #cabecalho .logo {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .faq {
   max-width: 800px;
   margin: 1rem auto 3rem auto;
   padding: 1rem;
-  font-family: "Roboto Condensed", sans-serif;
   text-align: justify;
 }
-
-.faq-item {
+.faq .faq-item {
   border: 1px solid #c9c9c9;
   margin-bottom: 0.5rem;
   border-radius: 5px;
   overflow: hidden;
   transition: all 0.3s ease;
 }
-
-.faq-question {
+.faq .faq-item.active .faq-answer {
+  max-height: 300px;
+  padding: 1rem;
+}
+.faq .faq-item.active .arrow {
+  transform: rotate(90deg);
+}
+.faq .faq-question {
   cursor: pointer;
   padding: 1rem;
   display: flex;
@@ -121,13 +148,11 @@ body {
   margin-bottom: 0.5rem;
   background: #f9f9f9;
 }
-
-.faq-text {
+.faq .faq-text {
   position: relative;
   padding-left: 1rem;
 }
-
-.faq-text::before {
+.faq .faq-text::before {
   content: "";
   position: absolute;
   left: -1rem;
@@ -138,8 +163,7 @@ body {
   background-color: hsl(0, 62%, 46%);
   border-radius: 4px 0px 0px 4px;
 }
-
-.faq-answer {
+.faq .faq-answer {
   max-height: 0;
   overflow: hidden;
   background: #ffffff;
@@ -150,178 +174,120 @@ body {
   border-top: 2px solid #f9f9f9;
   border-radius: 0 0 5px 5px;
 }
-
-.faq-item.active .faq-answer {
-  max-height: 300px; /* Aumentado para garantir que o conteúdo maior caiba */
-  padding: 1rem;
-}
-
-.faq-item .arrow {
+.faq .arrow {
   transition: transform 0.3s ease;
   color: #a80c11;
 }
-
-.faq-item.active .arrow {
-  transform: rotate(90deg);
+@media (max-width: 768px) {
+  .faq {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .faq .faq-question {
+    padding: 0.8rem;
+  }
+  .faq .faq-text {
+    font-size: 0.95rem;
+  }
+  .faq .faq-answer {
+    font-size: 0.9rem;
+  }
 }
 
 #rodape {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
-  padding-bottom: 0.8rem;
+  padding: 2rem 1rem 0.8rem;
   background-color: #a80c11;
-  color: #fff;
+  color: #ffffff;
   text-align: start;
 }
-
 #rodape .conteudo-rodape {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4rem; /* Reduzido para melhor adaptação */
+  gap: 4rem;
   margin-bottom: 1.5rem;
   width: 100%;
-  max-width: 1200px; /* Adicionado para controle em telas largas */
+  max-width: 1200px;
 }
-
 #rodape .coluna-logo,
 #rodape .coluna-sobre,
 #rodape .coluna-contato {
-  flex: 1; /* Permite que cresçam e encolham */
-  min-width: 280px; /* Evita que fiquem muito espremidos */
+  flex: 1;
+  min-width: 280px;
 }
-
 #rodape .coluna-logo {
   display: flex;
   align-items: start;
 }
-
 #rodape .coluna-logo .logo {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
-
 #rodape .coluna-logo .logo img {
   width: 50px;
-  height: auto;
 }
-
 #rodape .coluna-logo .logo h1 {
   font-size: 1.8rem;
   font-weight: bold;
   margin: 0;
 }
-
-#rodape .coluna-sobre {
-  text-align: justify;
-}
-
 #rodape .coluna-sobre h3,
 #rodape .coluna-contato h3 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
-
 #rodape .coluna-sobre p {
   font-size: 1rem;
   text-align: justify;
 }
-
 #rodape .coluna-contato .contato-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin: 0.4rem 0;
 }
-
-#rodape .coluna-contato .icone img {
+#rodape .coluna-contato .contato-item .icone img {
   width: 20px;
-  height: auto;
 }
-
-#rodape .coluna-contato span {
+#rodape .coluna-contato .contato-item span {
   font-size: 1rem;
 }
-
 #rodape .divisao {
   width: 75%;
   height: 0.5px;
-  background-color: white;
+  background-color: #ffffff;
   margin-bottom: 1rem;
 }
-
 #rodape .text-center {
   font-size: 0.85rem;
 }
-
-/* --- MEDIA QUERIES PARA RESPONSIVIDADE --- */
-/* Telas de tablets e menores (até 992px) */
 @media (max-width: 992px) {
-  #cabecalho {
-    padding: 0.7rem 2rem;
-  }
-  .ponto {
-    padding-left: 2rem;
-    padding-top: 100px; /* Ajusta o espaço para o cabeçalho fixo */
-  }
   #rodape .conteudo-rodape {
     gap: 2.5rem;
   }
 }
-/* Telas de tablets (até 768px) */
 @media (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
-  .faq {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    padding: 0.5rem;
-  }
-  /* Empilha as colunas do rodapé */
   #rodape .conteudo-rodape {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 2rem;
   }
+  #rodape .coluna-sobre {
+    text-align: center;
+  }
   #rodape .coluna-sobre p {
     text-align: center;
   }
-  #rodape .coluna-logo {
-    justify-content: center;
-  }
+  #rodape .coluna-logo,
   #rodape .coluna-contato .contato-item {
     justify-content: center;
-  }
-}
-/* Telas de celulares (até 480px) */
-@media (max-width: 480px) {
-  /* Empilha o logo e o menu */
-  #cabecalho {
-    flex-direction: column;
-    padding: 0.5rem 1rem;
-  }
-  #cabecalho .logo {
-    margin-bottom: 0.5rem;
-  }
-  .ponto {
-    padding-top: 150px; /* Mais espaço para o cabeçalho empilhado */
-    padding-left: 1rem;
-  }
-  .ponto h2 {
-    font-size: 1.3rem;
-  }
-  .faq-question {
-    padding: 0.8rem;
-  }
-  .faq-text {
-    font-size: 0.95rem;
-  }
-  .faq-answer {
-    font-size: 0.9rem;
   }
 }/*# sourceMappingURL=stylefaq.css.map */
