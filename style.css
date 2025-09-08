@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap");
 * {
   box-sizing: border-box;
@@ -17,10 +18,12 @@ body {
   gap: 1rem;
   padding-bottom: 1rem;
 }
+
 .ponto img {
   width: 1.5rem;
   height: 1.5rem;
 }
+
 .ponto h2 {
   font-size: 1.5rem;
 }
@@ -29,39 +32,60 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 5rem;
-  position: absolute;
+  padding: 0.7rem 5rem;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 1000;
   color: #ffffff;
+  background: transparent;
+  transition: background 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
 }
-#cabecalho .logo {
-  font-weight: bold;
-  font-size: 1.5rem;
+
+#cabecalho.scrolled {
+  background: rgba(168, 12, 17, 0.75);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
 }
+
+#cabecalho .logo img {
+  width: 140px;
+  height: auto;
+}
+
 #cabecalho .menu {
   display: flex;
   gap: 2rem;
 }
+
 #cabecalho .menu button {
   background: transparent;
-  color: #ffffff;
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
-  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  transition: color 0.3s ease;
 }
-#cabecalho .menu button a {
-  color: white;
-  text-decoration: none;
+
+#cabecalho .menu button::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background: #ffffff;
+  transition: width 0.3s ease;
 }
-#cabecalho .menu button:hover {
-  color: #bd2d2d;
-  text-decoration: none;
+
+#cabecalho .menu button:hover::after {
+  width: 100%;
 }
 
 .content {
@@ -77,17 +101,20 @@ body {
   height: 45rem;
   z-index: 0;
 }
+
 .content .texto {
   color: #000000;
   background-color: hsla(0, 0%, 100%, 0.7);
-  height: 11.5rem;
-  width: 40rem;
+  height: auto; /* Alterado para auto */
+  max-width: 40rem; /* Adicionado max-width */
+  width: 90%; /* Adicionado para responsividade */
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem; /* Aumentado padding */
   font-size: 1.2rem;
   border-radius: 1rem;
 }
-.content .custom-shape-divider-bottom-1748969036 {
+
+.custom-shape-divider-bottom-1748969036 {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -97,63 +124,62 @@ body {
   transform: rotate(180deg);
   z-index: 1;
 }
-.content .custom-shape-divider-bottom-1748969036 svg {
+
+.custom-shape-divider-bottom-1748969036 svg {
   position: relative;
   display: block;
   width: calc(103% + 1.3px);
   height: 127px;
   transform: rotateY(180deg);
 }
-.content .custom-shape-divider-bottom-1748969036 svg .shape-fill {
+
+.custom-shape-divider-bottom-1748969036 .shape-fill {
   fill: #A80C11;
 }
 
 #requisitos {
-  padding: 2rem 6rem;
+  padding: 4rem 6rem; /* Aumentado padding vertical */
   background-color: #a80c11;
-  height: 50rem;
-  margin-top: -0.2vw;
-  margin-bottom: -0.2vw;
+  height: auto; /* Alterado para auto */
+  margin-top: -1px; /* Ajuste fino */
   position: relative;
   z-index: 1;
 }
+
 #requisitos .ponto {
   color: #fff;
 }
+
 #requisitos .cartoes {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: 2rem;
   justify-items: center;
 }
+
 #requisitos .card {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   text-align: left;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 #requisitos .card .card-header {
   font-weight: bold;
   font-size: 1.1rem;
 }
+
 #requisitos .card .card-text {
   font-size: 0.95rem;
   text-align: justify;
 }
+
 #requisitos .card:hover {
   transform: translateY(-8px);
   box-shadow: 6px 8px 16px rgba(0, 0, 0, 0.6);
 }
 
-.custom-shape-divider-top-1748970833 {
-  left: 0;
-  width: 100vw;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-  z-index: 1;
-}
-.custom-shape-divider-top-1748970833 svg {
+.custom-shape-divider-top svg {
   position: relative;
   display: block;
   width: calc(133% + 1.3px);
@@ -178,41 +204,29 @@ body {
   flex-direction: column;
   gap: 1rem;
 }
-.agendamento-container .agendamento-box {
+
+.agendamento-box {
   display: flex;
   gap: 2rem;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
 }
-.agendamento-container .agendamento-box .texto-agendamento {
+
+.texto-agendamento {
   color: #fff;
   flex: 1;
   min-width: 250px;
   text-align: left;
 }
-.agendamento-container .agendamento-box .texto-agendamento p {
+
+.texto-agendamento p {
   font-size: 1.1rem;
   margin-bottom: 1rem;
 }
-.agendamento-container .agendamento-box .texto-agendamento .botao-agendar-link {
-  display: inline-block;
-  padding: 0.7rem 1.5rem;
-  background-color: #fff;
-  color: #a80c11;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 8px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
-  transition: background 0.3s ease, color 0.3s ease;
-}
-.agendamento-container .agendamento-box .texto-agendamento .botao-agendar-link:hover {
-  background-color: #bd2d2d;
-  color: #fff;
-}
-.agendamento-container .p-4 {
-  padding-bottom: 0 !important;
-  padding-top: 0 !important;
+
+.agendamento-box .p-4 {
+  padding: 0 !important;
 }
 
 .imagem-agendamento {
@@ -220,6 +234,7 @@ body {
   min-width: 250px;
   text-align: center;
 }
+
 .imagem-agendamento img {
   width: 100%;
   max-width: 350px;
@@ -227,14 +242,15 @@ body {
 
 .faq {
   position: relative;
-  /* Permite o posicionamento absoluto dentro dela */
   display: flex;
   justify-content: center;
   margin: 0.5rem;
 }
+
 .faq img {
   width: 15vw;
 }
+
 .faq button {
   position: absolute;
   top: 45%;
@@ -250,13 +266,14 @@ body {
   text-decoration: none;
   z-index: 2;
 }
+
 .faq button a {
   color: #fff;
   text-decoration: none;
 }
-.faq button:hover {
+
+.faq button:hover a {
   color: #000000;
-  text-decoration: none;
 }
 
 #rodape {
@@ -269,70 +286,196 @@ body {
   color: #fff;
   text-align: start;
 }
+
 #rodape .conteudo-rodape {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8rem;
+  gap: 4rem; /* Reduzido o gap */
   margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 2rem;
 }
+
 #rodape .coluna-logo,
 #rodape .coluna-sobre,
 #rodape .coluna-contato {
-  max-width: 28vw;
+  flex: 1;
+  min-width: 280px; /* Adicionado min-width */
+  max-width: 350px; /* Adicionado max-width */
 }
+
 #rodape .coluna-logo {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
+
 #rodape .coluna-logo .logo {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
+
 #rodape .coluna-logo .logo img {
   width: 50px;
   height: auto;
 }
+
 #rodape .coluna-logo .logo h1 {
   font-size: 1.8rem;
   font-weight: bold;
   margin: 0;
 }
-#rodape .coluna-sobre {
-  text-align: justify;
-}
-#rodape .coluna-sobre h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
-}
-#rodape .coluna-sobre p {
-  font-size: 1rem;
-  text-align: justify;
-}
+
+#rodape .coluna-sobre h3,
 #rodape .coluna-contato h3 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
+
+#rodape .coluna-sobre p {
+  font-size: 1rem;
+  text-align: justify;
+}
+
 #rodape .coluna-contato .contato-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin: 0.4rem 0;
 }
-#rodape .coluna-contato .contato-item .icone img {
+
+#rodape .coluna-contato .icone img {
   width: 20px;
   height: auto;
 }
-#rodape .coluna-contato .contato-item span {
+
+#rodape .coluna-contato span {
   font-size: 1rem;
 }
+
 #rodape .divisao {
   width: 75%;
   height: 0.5px;
   background-color: white;
   margin-bottom: 1rem;
 }
+
 #rodape .text-center {
   font-size: 0.85rem;
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVIDADE --- */
+/* Telas de tablets e menores (até 1024px) */
+@media (max-width: 1024px) {
+  #requisitos {
+    padding: 3rem 4rem;
+  }
+  #rodape .conteudo-rodape {
+    gap: 3rem;
+    justify-content: space-around;
+  }
+}
+/* Telas de tablets (até 768px) */
+@media (max-width: 768px) {
+  #cabecalho {
+    padding: 0.7rem 2rem;
+    flex-direction: column; /* Empilha logo e menu */
+    padding-bottom: 0.5rem;
+  }
+  #cabecalho .logo {
+    margin-bottom: 0.5rem;
+  }
+  #cabecalho .menu {
+    gap: 1rem;
+  }
+  #cabecalho .menu button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+  .content {
+    height: 40rem;
+  }
+  .content .texto {
+    padding: 1.2rem;
+    font-size: 1.1rem;
+  }
+  #requisitos {
+    padding: 2.5rem 2rem;
+  }
+  #agendamento .ponto {
+    padding-left: 2rem;
+  }
+  .agendamento-container {
+    padding: 1.5rem 1rem;
+  }
+  .agendamento-box {
+    flex-direction: column;
+    text-align: center;
+  }
+  .texto-agendamento {
+    text-align: center;
+  }
+  .imagem-agendamento {
+    margin-top: 1rem;
+  }
+  .faq img {
+    width: 25vw;
+  }
+  #rodape .conteudo-rodape {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+  #rodape .coluna-sobre,
+  #rodape .coluna-contato {
+    text-align: center;
+  }
+  #rodape .coluna-sobre p {
+    text-align: center;
+  }
+  #rodape .coluna-logo {
+    justify-content: center;
+  }
+  #rodape .coluna-contato .contato-item {
+    justify-content: center;
+  }
+}
+/* Telas de celulares (até 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+  #cabecalho {
+    padding: 0.5rem 1rem;
+  }
+  #cabecalho .logo img {
+    width: 120px;
+  }
+  #cabecalho .menu {
+    gap: 0.5rem;
+    flex-wrap: wrap; /* Permite que os botões quebrem a linha */
+    justify-content: center;
+  }
+  #cabecalho .menu button {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+  .content {
+    height: 35rem;
+  }
+  .content .texto {
+    font-size: 1rem;
+  }
+  #requisitos {
+    padding: 2rem 1rem;
+  }
+  .faq img {
+    width: 35vw;
+  }
+  .faq button {
+    font-size: 0.9rem;
+  }
 }/*# sourceMappingURL=style.css.map */

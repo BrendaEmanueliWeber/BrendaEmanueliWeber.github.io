@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap");
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 * {
   box-sizing: border-box;
   font-family: "Roboto Condensed", sans-serif;
@@ -8,111 +9,136 @@ body {
   margin: 0;
   font-size: 18px;
   font-family: "Roboto Condensed", sans-serif;
+  background: #fef2f2; /* movido para cá */
 }
 
-.ponto {
-  display: flex;
-  position: relative;
-  align-items: baseline;
-  gap: 1rem;
-  padding-top: 6.5vw;
-  padding-left: 6rem;
-}
-.ponto img {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.ponto h2 {
-  font-size: 1.5rem;
+.hidden {
+  display: none !important;
 }
 
 #cabecalho {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.8rem 5rem;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
-  color: #ffffff;
-  background-color: #a80c11;
+  padding: 15px 6vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+  background: #a80c11; /* vermelho sólido */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
-#cabecalho .logo {
-  font-weight: bold;
-  font-size: 1.5rem;
+
+#cabecalho.scrolled {
+  background: rgba(168, 12, 17, 0.75); /* vermelho translúcido */
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px); /* efeito vidro */
 }
+
+#cabecalho .logo img {
+  width: 140px;
+  height: auto;
+}
+
 #cabecalho .menu {
   display: flex;
-  gap: 2rem;
+  gap: 25px;
 }
+
 #cabecalho .menu button {
-  background: transparent;
-  color: #ffffff;
+  background: none;
   border: none;
-  padding: 0.5rem 1rem;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-}
-#cabecalho .menu button a {
   color: white;
-  text-decoration: none;
+  font-weight: 600;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
 }
+
+#cabecalho .menu button::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background: white;
+  transition: 0.3s;
+}
+
 #cabecalho .menu button:hover {
-  color: #bd2d2d;
-  text-decoration: none;
+  color: #ffdddd;
+}
+
+#cabecalho .menu button:hover::after {
+  width: 100%;
 }
 
 .agendamento-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
-  background: #fef2f2;
-  padding: 2rem;
+  min-height: 100vh; /* Alterado para ocupar a tela inteira */
+  padding: 1rem;
+  padding-top: 120px; /* Espaço para o cabeçalho fixo */
+  padding-bottom: 40px;
 }
-.agendamento-container .card-agendamento {
+
+.card-agendamento {
   width: 100%;
   max-width: 800px;
   background: #fff;
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  margin: 10vw 0 10vw 0;
 }
-.agendamento-container .card-agendamento h1 {
+
+.card-agendamento h1 {
   color: #a80c11;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-size: 1.8rem;
+  text-align: center;
 }
-.agendamento-container .card-agendamento h2 {
+
+.card-agendamento h2 {
   color: #333;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #fca5a5;
+  padding-bottom: 0.5rem;
 }
-.agendamento-container .card-agendamento form {
+
+.card-agendamento form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.agendamento-container .card-agendamento form input {
+
+.card-agendamento form input {
   padding: 0.8rem;
   border: 1px solid #ddd;
   border-radius: 0.5rem;
   font-size: 1rem;
   outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-.agendamento-container .card-agendamento form input:focus {
+
+.card-agendamento form input:focus {
   border-color: #a80c11;
   box-shadow: 0 0 5px rgba(168, 12, 17, 0.3);
 }
-.agendamento-container .card-agendamento form button {
-  padding: 0.8rem;
+
+.card-agendamento form button {
+  padding: 0.9rem;
   background-color: #a80c11;
   color: #fff;
   border: none;
@@ -120,12 +146,36 @@ body {
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 0.5rem;
+}
+
+.card-agendamento form button:hover {
+  background-color: #830a0e;
+}
+
+.user-menu {
+  margin-bottom: 1.5rem;
+}
+
+.user-menu button {
+  padding: 0.7rem 1.5rem;
+  background-color: #fee2e2;
+  color: #a80c11;
+  border: 1px solid #fca5a5;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
   transition: 0.3s;
 }
-.agendamento-container .card-agendamento form button:hover {
-  background-color: rgb(120.4, 8.6, 12.1833333333);
+
+.user-menu button:hover {
+  background-color: #fca5a5;
+  color: #fff;
 }
-.agendamento-container .card-agendamento ul {
+
+#meus-agendamentos ul {
   list-style: none;
   padding: 0;
   margin: 1rem 0;
@@ -133,100 +183,180 @@ body {
   flex-direction: column;
   gap: 0.8rem;
 }
-.agendamento-container .card-agendamento ul li {
+
+#meus-agendamentos li {
   background: #fee2e2;
   padding: 0.8rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #fca5a5;
+  border-left: 5px solid #a80c11;
   font-weight: 500;
-  color: #a80c11;
+  color: #830a0e;
 }
-.agendamento-container .card-agendamento #agendar-horario {
+
+#agendar-horario {
   margin-top: 2rem;
   padding: 1.5rem;
   background: #f9fafb;
   border-radius: 0.5rem;
-  border: 1px solid #ddd;
-}
-.agendamento-container .card-agendamento #agendar-horario h2 {
-  color: #a80c11;
-  margin-bottom: 1rem;
+  border: 1px solid #e5e7eb;
 }
 
 #rodape {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
-  padding-bottom: 0.8rem;
+  padding: 3rem 1rem 1rem 1rem;
   background-color: #a80c11;
   color: #fff;
   text-align: start;
 }
+
 #rodape .conteudo-rodape {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8rem;
-  margin-bottom: 1.5rem;
+  gap: 4rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 1200px;
 }
+
 #rodape .coluna-logo,
 #rodape .coluna-sobre,
 #rodape .coluna-contato {
-  max-width: 28vw;
+  flex: 1;
+  min-width: 280px;
 }
+
 #rodape .coluna-logo {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
+
 #rodape .coluna-logo .logo {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
-#rodape .coluna-logo .logo img {
+
+#rodape .coluna-logo img {
   width: 50px;
   height: auto;
 }
-#rodape .coluna-logo .logo h1 {
+
+#rodape .coluna-logo h1 {
   font-size: 1.8rem;
   font-weight: bold;
   margin: 0;
 }
-#rodape .coluna-sobre {
-  text-align: justify;
-}
-#rodape .coluna-sobre h3 {
+
+#rodape .coluna-sobre h3,
+#rodape .coluna-contato h3 {
   font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
+  font-weight: bold;
 }
+
 #rodape .coluna-sobre p {
   font-size: 1rem;
   text-align: justify;
+  line-height: 1.6;
 }
-#rodape .coluna-contato h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
-}
+
 #rodape .coluna-contato .contato-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0.4rem 0;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
 }
-#rodape .coluna-contato .contato-item .icone img {
+
+#rodape .coluna-contato .icone img {
   width: 20px;
   height: auto;
 }
-#rodape .coluna-contato .contato-item span {
-  font-size: 1rem;
-}
+
 #rodape .divisao {
-  width: 75%;
-  height: 0.5px;
-  background-color: white;
-  margin-bottom: 1rem;
+  width: 85%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
 }
+
 #rodape .text-center {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVIDADE --- */
+/* Telas de tablets (até 820px) */
+@media (max-width: 820px) {
+  .card-agendamento {
+    padding: 1.5rem;
+  }
+  #rodape .conteudo-rodape {
+    gap: 2.5rem;
+    justify-content: space-around;
+  }
+}
+/* Telas de celulares grandes e tablets pequenos (até 640px) */
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+  #cabecalho {
+    padding: 10px 4vw;
+  }
+  .agendamento-container {
+    padding: 1rem;
+    padding-top: 100px; /* Menos espaço para o header menor */
+  }
+  .card-agendamento h1 {
+    font-size: 1.5rem;
+  }
+  .card-agendamento h2 {
+    font-size: 1.2rem;
+  }
+  #rodape {
+    text-align: center;
+  }
+  #rodape .conteudo-rodape {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  #rodape .coluna-logo,
+  #rodape .coluna-sobre,
+  #rodape .coluna-contato {
+    min-width: 100%;
+    max-width: 400px; /* Limita a largura das colunas */
+  }
+  #rodape .coluna-logo {
+    justify-content: center;
+  }
+  #rodape .coluna-sobre p {
+    text-align: center;
+  }
+  #rodape .coluna-contato .contato-item {
+    justify-content: center;
+  }
+}
+/* Telas de celulares (até 480px) */
+@media (max-width: 480px) {
+  #cabecalho {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 1rem;
+  }
+  .agendamento-container {
+    padding-top: 150px; /* Mais espaço para o header empilhado */
+  }
+  .card-agendamento {
+    padding: 1rem;
+  }
+  .card-agendamento h1 {
+    font-size: 1.3rem;
+  }
+  #agendar-horario {
+    padding: 1rem;
+  }
 }/*# sourceMappingURL=styleagend.css.map */

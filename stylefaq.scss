@@ -19,135 +19,150 @@ body {
     gap: 1rem;
     padding-top: 6.5vw;
     padding-left: 6rem;
-
-    img {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
 }
 
+.ponto img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.ponto h2 {
+    font-size: 1.5rem;
+}
+
+
 #cabecalho {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 5rem;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1;
-    color: #ffffff;
-    background-color: #a80c11;
-
-
-    .logo {
-        font-weight: bold;
-        font-size: 1.5rem;
-    }
-
-    .menu {
-        display: flex;
-        gap: 2rem;
-
-        button {
-            background: transparent;
-            color: #ffffff;
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            text-decoration: none;
-
-            a {
-                color: #ffff;
-                text-decoration: none;
-            }
-
-            &:hover {
-                color: #bd2d2d;
-                text-decoration: none;
-            }
-        }
-    }
+    padding: 0.7rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
+    background: #a80c11; /* vermelho sólido */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
+
+#cabecalho.scrolled {
+    background: rgba(168, 12, 17, 0.75); /* vermelho translúcido */
+    backdrop-filter: blur(6px); /* efeito vidro */
+}
+
+#cabecalho .logo img {
+    width: 140px;
+    height: auto;
+}
+
+#cabecalho .menu {
+    display: flex;
+    gap: 25px;
+}
+
+#cabecalho .menu button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#cabecalho .menu button::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: -4px;
+    background: white;
+    transition: 0.3s;
+}
+
+#cabecalho .menu button:hover {
+    color: #ffdddd;
+}
+
+#cabecalho .menu button:hover::after {
+    width: 100%;
+}
+
 
 .faq {
     max-width: 800px;
-    margin: 3rem auto;
-    margin-top: 1rem;
+    margin: 1rem auto 3rem auto;
     padding: 1rem;
-    padding-top: 0rem;
     font-family: "Roboto Condensed", sans-serif;
     text-align: justify;
+}
 
-    .faq-item {
-        border: 1px solid #c9c9c9;
-        margin-bottom: 0.5rem;
-        border-radius: 5px;
-        overflow: hidden;
-        transition: all 0.3s ease;
+.faq-item {
+    border: 1px solid #c9c9c9;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
 
-        .faq-question {
-            cursor: pointer;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 0.5rem;
-            background: #f9f9f9;
-        }
+.faq-question {
+    cursor: pointer;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    background: #f9f9f9;
+}
 
-        .faq-text {
-            position: relative;
-            padding-left: 1rem;
-        }
+.faq-text {
+    position: relative;
+    padding-left: 1rem;
+}
 
-        .faq-text::before {
-            content: "";
-            position: absolute;
-            left: -1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0.5rem;
-            height: 3.6rem;
-            background-color: hsl(0, 62%, 46%, );
-            border-radius: 4px 0px 0px 4px;
-        }
+.faq-text::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.5rem;
+    height: 3.6rem;
+    background-color: hsl(0, 62%, 46%);
+    border-radius: 4px 0px 0px 4px;
+}
 
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            background: #ffffff;
-            color: #333;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            padding: 0 1rem;
-            border: 1px solid #f9f9f9;
-            border-top: 2px solid #f9f9f9;
-            border-radius: 0 0 5px 5px;
-        }
-    }
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    background: #ffffff;
+    color: #333;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 1rem;
+    border: 1px solid #f9f9f9;
+    border-top: 2px solid #f9f9f9;
+    border-radius: 0 0 5px 5px;
+}
 
-    .faq-item.active .faq-answer {
-        max-height: 200px;
-        padding: 1rem;
-    }
+.faq-item.active .faq-answer {
+    max-height: 300px; /* Aumentado para garantir que o conteúdo maior caiba */
+    padding: 1rem;
+}
 
-    .faq-item .arrow {
-        transition: transform 0.3s ease;
-        color: #a80c11;
-    }
+.faq-item .arrow {
+    transition: transform 0.3s ease;
+    color: #a80c11;
+}
 
-    .faq-item.active .arrow {
-        transform: rotate(90deg);
-    }
+.faq-item.active .arrow {
+    transform: rotate(90deg);
 }
 
 #rodape {
@@ -159,89 +174,165 @@ body {
     background-color: #a80c11;
     color: #fff;
     text-align: start;
+}
 
-    .conteudo-rodape {
-        display: flex;
-        flex-wrap: wrap;
+#rodape .conteudo-rodape {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem; /* Reduzido para melhor adaptação */
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 1200px; /* Adicionado para controle em telas largas */
+}
+
+#rodape .coluna-logo,
+#rodape .coluna-sobre,
+#rodape .coluna-contato {
+    flex: 1; /* Permite que cresçam e encolham */
+    min-width: 280px; /* Evita que fiquem muito espremidos */
+}
+
+#rodape .coluna-logo {
+    display: flex;
+    align-items: start;
+}
+
+#rodape .coluna-logo .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+#rodape .coluna-logo .logo img {
+    width: 50px;
+    height: auto;
+}
+
+#rodape .coluna-logo .logo h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+#rodape .coluna-sobre {
+    text-align: justify;
+}
+
+#rodape .coluna-sobre h3,
+#rodape .coluna-contato h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+#rodape .coluna-sobre p {
+    font-size: 1rem;
+    text-align: justify;
+}
+
+#rodape .coluna-contato .contato-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.4rem 0;
+}
+
+#rodape .coluna-contato .icone img {
+    width: 20px;
+    height: auto;
+}
+
+#rodape .coluna-contato span {
+    font-size: 1rem;
+}
+
+#rodape .divisao {
+    width: 75%;
+    height: 0.5px;
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+#rodape .text-center {
+    font-size: 0.85rem;
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVIDADE --- */
+
+/* Telas de tablets e menores (até 992px) */
+@media (max-width: 992px) {
+    #cabecalho {
+        padding: 0.7rem 2rem;
+    }
+    .ponto {
+        padding-left: 2rem;
+        padding-top: 100px; /* Ajusta o espaço para o cabeçalho fixo */
+    }
+    #rodape .conteudo-rodape {
+        gap: 2.5rem;
+    }
+}
+
+/* Telas de tablets (até 768px) */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .faq {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    /* Empilha as colunas do rodapé */
+    #rodape .conteudo-rodape {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    #rodape .coluna-sobre p {
+        text-align: center;
+    }
+
+    #rodape .coluna-logo {
         justify-content: center;
-        gap: 8rem;
-        margin-bottom: 1.5rem;
     }
 
-    .coluna-logo,
-    .coluna-sobre,
-    .coluna-contato {
-        max-width: 28vw;
+    #rodape .coluna-contato .contato-item {
+        justify-content: center;
+    }
+}
+
+/* Telas de celulares (até 480px) */
+@media (max-width: 480px) {
+    /* Empilha o logo e o menu */
+    #cabecalho {
+        flex-direction: column;
+        padding: 0.5rem 1rem;
+    }
+    #cabecalho .logo {
+        margin-bottom: 0.5rem;
+    }
+    
+    .ponto {
+        padding-top: 150px; /* Mais espaço para o cabeçalho empilhado */
+        padding-left: 1rem;
     }
 
-    .coluna-logo {
-        display: flex;
-        align-items: start;
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-
-            img {
-                width: 50px;
-                height: auto;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-                font-weight: bold;
-                margin: 0;
-            }
-        }
+    .ponto h2 {
+        font-size: 1.3rem;
     }
 
-
-    .coluna-sobre {
-        text-align: justify;
-
-        h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            font-size: 1rem;
-            text-align: justify;
-        }
+    .faq-question {
+        padding: 0.8rem;
     }
-
-    .coluna-contato {
-        h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contato-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 0.4rem 0;
-
-            .icone img {
-                width: 20px;
-                height: auto;
-            }
-
-            span {
-                font-size: 1rem;
-            }
-        }
+    .faq-text {
+        font-size: 0.95rem;
     }
-
-    .divisao {
-        width: 75%;
-        height: 0.5px;
-        background-color: white;
-        margin-bottom: 1rem;
-    }
-
-    .text-center {
-        font-size: 0.85rem;
+    .faq-answer {
+        font-size: 0.9rem;
     }
 }
