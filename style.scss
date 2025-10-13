@@ -1,20 +1,15 @@
-// Importa a fonte do Google
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100..900&display=swap');
 
-// --- VARIÁVEIS ---
-// Definir variáveis torna a manutenção de cores e fontes muito mais fácil
 $primary-red: #a80c11;
 $primary-white: #ffffff;
 $primary-black: #000000;
 $font-family-base: "Roboto Condensed", sans-serif;
 
-// --- ESTILOS GERAIS ---
 * {
     box-sizing: border-box;
     font-family: $font-family-base;
 }
 
-// Corrige o bug de rolagem lateral
 html, body {
     overflow-x: hidden;
 }
@@ -24,13 +19,11 @@ body {
     font-size: 18px;
     font-family: $font-family-base;
 
-    // Media Query para fontes em telas menores
     @media (max-width: 480px) {
         font-size: 16px;
     }
 }
 
-// Classe de utilidade para títulos de seção
 .ponto {
     display: flex;
     position: relative;
@@ -48,7 +41,6 @@ body {
     }
 }
 
-// --- CABEÇALHO ---
 #cabecalho {
     display: flex;
     justify-content: space-between;
@@ -63,7 +55,6 @@ body {
     background: transparent;
     transition: background 0.3s ease, backdrop-filter 0.3s ease;
 
-    // Estilo do cabeçalho quando a página é rolada
     &.scrolled {
         background: rgba(168, 12, 17, 0.75);
         backdrop-filter: blur(6px);
@@ -93,7 +84,6 @@ body {
             position: relative;
             transition: color 0.3s ease;
 
-            // Efeito de sublinhado no hover
             &::after {
                 content: "";
                 position: absolute;
@@ -111,7 +101,6 @@ body {
         }
     }
 
-    // --- Media Queries para o Cabeçalho ---
     @media (max-width: 768px) {
         flex-direction: column;
         padding: 0.7rem 2rem 0.5rem;
@@ -146,7 +135,6 @@ body {
     }
 }
 
-// --- SEÇÃO DE CONTEÚDO PRINCIPAL (BANNER) ---
 .content {
     position: relative;
     overflow: hidden;
@@ -171,7 +159,6 @@ body {
         border-radius: 1rem;
     }
 
-    // --- Media Queries para o Conteúdo ---
     @media (max-width: 768px) {
         height: 40rem;
         .texto {
@@ -188,7 +175,6 @@ body {
     }
 }
 
-// Divisor de seção em formato de onda
 .custom-shape-divider-bottom-1748969036 {
     position: absolute;
     bottom: 0;
@@ -212,7 +198,6 @@ body {
     }
 }
 
-// --- SEÇÃO DE REQUISITOS ---
 #requisitos {
     padding: 4rem 6rem;
     background-color: $primary-red;
@@ -253,7 +238,6 @@ body {
         }
     }
 
-    // --- Media Queries para Requisitos ---
     @media (max-width: 1024px) {
         padding: 3rem 4rem;
     }
@@ -267,7 +251,6 @@ body {
     }
 }
 
-// --- SEÇÃO DE AGENDAMENTO ---
 #agendamento {
     .ponto {
         padding-left: 6rem;
@@ -279,7 +262,7 @@ body {
     .agendamento-container {
         margin: 1rem auto;
         padding: 2rem;
-        background-color: $primary-red; // Cor de fundo da seção, não do container
+        background-color: $primary-red;
         border-radius: 1rem;
         max-width: 1000px;
 
@@ -306,7 +289,7 @@ body {
     }
 
     .texto-agendamento {
-        color: $primary-white; // Ajustado para branco
+        color: $primary-white; 
         flex: 1;
         min-width: 250px;
         text-align: left;
@@ -348,7 +331,6 @@ body {
     fill: $primary-red;
 }
 
-// --- SEÇÃO FAQ ---
 .faq {
     position: relative;
     display: flex;
@@ -395,7 +377,6 @@ body {
     }
 }
 
-// --- RODAPÉ ---
 #rodape {
     display: flex;
     flex-direction: column;
@@ -485,7 +466,6 @@ body {
         font-size: 0.85rem;
     }
 
-    // --- Media Queries para o Rodapé ---
     @media (max-width: 1024px) {
         .conteudo-rodape {
             gap: 3rem;

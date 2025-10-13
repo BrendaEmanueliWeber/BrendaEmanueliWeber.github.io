@@ -1,15 +1,25 @@
+$font-primary: "Roboto Condensed", sans-serif;
+$color-primary: #a80c11;
+$color-primary-transparent: rgba(168, 12, 17, 0.75);
+$color-primary-dark: #830a0e;
+$color-bg: #fef2f2;
+$color-accent-light: #fee2e2;
+$color-accent-border: #fca5a5;
+$color-white: #fff;
+$color-text-dark: #333;
+$color-text-light: #666;
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
     box-sizing: border-box;
-    font-family: "Roboto Condensed", sans-serif;
+    font-family: $font-primary;
 }
 
 body {
     margin: 0;
     font-size: 18px;
-    font-family: "Roboto Condensed", sans-serif;
-    background: #fef2f2; /* movido para cá */
+    background: $color-bg;
 }
 
 .hidden {
@@ -26,169 +36,204 @@ body {
     justify-content: space-between;
     align-items: center;
     transition: background 0.3s ease, backdrop-filter 0.3s ease;
-
-    background: #a80c11; /* vermelho sólido */
+    background: $color-primary;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-}
 
-#cabecalho.scrolled {
-    background: rgba(168, 12, 17, 0.75); /* vermelho translúcido */
-    backdrop-filter: blur(6px); /* efeito vidro */
-}
+    &.scrolled {
+        background: $color-primary-transparent;
+        backdrop-filter: blur(6px);
+    }
 
-#cabecalho .logo img {
-    width: 140px;
-    height: auto;
-}
+    .logo img {
+        width: 140px;
+        height: auto;
+    }
 
-#cabecalho .menu {
-    display: flex;
-    gap: 25px;
-}
+    .menu {
+        display: flex;
+        gap: 25px;
 
-#cabecalho .menu button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-weight: 600;
-    font-family: "Roboto Condensed", sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    position: relative;
-}
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: $color-white;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
 
-#cabecalho .menu button::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    left: 0;
-    bottom: -4px;
-    background: white;
-    transition: 0.3s;
-}
+            &::after {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 2px;
+                left: 0;
+                bottom: -4px;
+                background: $color-white;
+                transition: 0.3s;
+            }
 
-#cabecalho .menu button:hover {
-    color: #ffdddd;
-}
-
-#cabecalho .menu button:hover::after {
-    width: 100%;
+            &:hover {
+                color: lighten($color-primary, 40%);
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
 
 .agendamento-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Alterado para ocupar a tela inteira */
-    padding: 1rem;
-    padding-top: 120px; /* Espaço para o cabeçalho fixo */
-    padding-bottom: 40px;
+    min-height: 100vh;
+    padding: 120px 1rem 40px 1rem;
 }
 
 .card-agendamento {
     width: 100%;
     max-width: 800px;
-    background: #fff;
+    background: $color-white;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+    h1 {
+        color: $color-primary;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    h2 {
+        color: $color-text-dark;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid $color-accent-border;
+        padding-bottom: 0.5rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        input {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+
+            &:focus {
+                border-color: $color-primary;
+                box-shadow: 0 0 5px rgba(168, 12, 17, 0.3);
+            }
+        }
+
+        button[type="submit"] {
+            padding: 0.9rem;
+            background-color: $color-primary;
+            color: $color-white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 0.5rem;
+
+            &:hover {
+                background-color: $color-primary-dark;
+            }
+        }
+    }
 }
 
-.card-agendamento h1 {
-    color: #a80c11;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
+.auth-switch {
     text-align: center;
-}
-
-.card-agendamento h2 {
-    color: #333;
-    font-size: 1.4rem;
-    font-weight: 600;
     margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #fca5a5;
-    padding-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: $color-text-light;
+
+    button {
+        background: none;
+        border: none;
+        color: $color-primary;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: underline;
+        font-size: 0.9rem;
+        padding: 0;
+    }
 }
 
-.card-agendamento form {
+.user-header {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    h2 { margin: 0; }
 }
 
-.card-agendamento form input {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.card-agendamento form input:focus {
-    border-color: #a80c11;
-    box-shadow: 0 0 5px rgba(168, 12, 17, 0.3);
-}
-
-.card-agendamento form button {
-    padding: 0.9rem;
-    background-color: #a80c11;
-    color: #fff;
+.logout-button {
+    padding: 0.6rem 1rem;
+    background-color: darken($color-primary, 15%);
+    color: $color-white;
     border: none;
     border-radius: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 0.5rem;
+    &:hover { background-color: darken($color-primary, 25%); }
 }
 
-.card-agendamento form button:hover {
-    background-color: #830a0e;
-}
-
-.user-menu {
-    margin-bottom: 1.5rem;
-}
-
-.user-menu button {
-    padding: 0.7rem 1.5rem;
-    background-color: #fee2e2;
-    color: #a80c11;
-    border: 1px solid #fca5a5;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.user-menu button:hover {
-    background-color: #fca5a5;
-    color: #fff;
-}
-
-
-#meus-agendamentos ul {
+#lista-agendamentos {
     list-style: none;
     padding: 0;
     margin: 1rem 0;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
+
+    li {
+        background: $color-accent-light;
+        padding: 0.8rem 1rem;
+        border-radius: 0.5rem;
+        border-left: 5px solid $color-primary;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        
+        small {
+            font-size: 0.9em;
+            opacity: 0.8;
+            display: block;
+        }
+    }
 }
 
-#meus-agendamentos li {
-    background: #fee2e2;
-    padding: 0.8rem 1rem;
-    border-radius: 0.5rem;
-    border-left: 5px solid #a80c11;
-    font-weight: 500;
-    color: #830a0e;
+.details-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    background-color: $color-primary;
+    color: $color-white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.3s;
+    &:hover { background-color: $color-primary-dark; }
 }
 
 #agendar-horario {
@@ -199,181 +244,202 @@ body {
     border: 1px solid #e5e7eb;
 }
 
+#modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+
+    &:not(.hidden) {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+#modal-content {
+    background: $color-white;
+    padding: 2rem 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 550px;
+    text-align: left;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease-in-out;
+    max-height: 90vh;
+    overflow-y: auto;
+
+    #modal-container:not(.hidden) & {
+        transform: translateY(0);
+    }
+    
+    h2 {
+        margin-top: 0;
+        font-size: 1.6rem;
+        color: $color-primary;
+        border-bottom: 2px solid $color-accent-border;
+        padding-bottom: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #modal-details {
+      p {
+            margin: 1rem 0;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: darken($color-text-light, 10%);
+            border-bottom: 1px solid #f3f4f6;
+            padding-bottom: 1rem;
+
+            &:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            strong {
+                color: $color-text-dark;
+                font-weight: 600;
+                display: block;
+                font-size: 1.1rem;
+                margin-bottom: 4px;
+            }
+        }
+    }
+    
+    #modal-close-btn {
+        display: block;
+        width: 100%;
+        margin-top: 2.5rem;
+        padding: 0.9rem;
+        background-color: $color-primary;
+        color: $color-white;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+
+        &:hover {
+            background-color: $color-primary-dark;
+            transform: scale(1.02);
+        }
+    }
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
 #rodape {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 3rem 1rem 1rem 1rem;
-    background-color: #a80c11;
-    color: #fff;
-    text-align: start;
-}
+    background-color: $color-primary;
+    color: $color-white;
 
-#rodape .conteudo-rodape {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4rem;
-    margin-bottom: 2rem;
-    width: 100%;
-    max-width: 1200px;
-}
-
-#rodape .coluna-logo,
-#rodape .coluna-sobre,
-#rodape .coluna-contato {
-    flex: 1;
-    min-width: 280px;
-}
-
-#rodape .coluna-logo {
-    display: flex;
-    align-items: flex-start;
-}
-
-#rodape .coluna-logo .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-#rodape .coluna-logo img {
-    width: 50px;
-    height: auto;
-}
-
-#rodape .coluna-logo h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin: 0;
-}
-
-#rodape .coluna-sobre h3,
-#rodape .coluna-contato h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.8rem;
-    font-weight: bold;
-}
-
-#rodape .coluna-sobre p {
-    font-size: 1rem;
-    text-align: justify;
-    line-height: 1.6;
-}
-
-#rodape .coluna-contato .contato-item {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 0.5rem;
-}
-
-#rodape .coluna-contato .icone img {
-    width: 20px;
-    height: auto;
-}
-
-#rodape .divisao {
-    width: 85%;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 1.5rem;
-}
-
-#rodape .text-center {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-
-/* --- MEDIA QUERIES PARA RESPONSIVIDADE --- */
-
-/* Telas de tablets (até 820px) */
-@media (max-width: 820px) {
-    .card-agendamento {
-        padding: 1.5rem;
-    }
-
-    #rodape .conteudo-rodape {
-        gap: 2.5rem;
-        justify-content: space-around;
-    }
-}
-
-/* Telas de celulares grandes e tablets pequenos (até 640px) */
-@media (max-width: 640px) {
-    body {
-        font-size: 16px;
-    }
-
-    #cabecalho {
-        padding: 10px 4vw;
-    }
-
-    .agendamento-container {
-        padding: 1rem;
-        padding-top: 100px; /* Menos espaço para o header menor */
-    }
-
-    .card-agendamento h1 {
-        font-size: 1.5rem;
-    }
-
-    .card-agendamento h2 {
-        font-size: 1.2rem;
-    }
-
-    #rodape {
-        text-align: center;
-    }
-
-    #rodape .conteudo-rodape {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-    }
-
-    #rodape .coluna-logo,
-    #rodape .coluna-sobre,
-    #rodape .coluna-contato {
-        min-width: 100%;
-        max-width: 400px; /* Limita a largura das colunas */
-    }
-
-    #rodape .coluna-logo {
+    .conteudo-rodape {
+        display: flex;
+        flex-wrap: wrap;
         justify-content: center;
+        gap: 4rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        max-width: 1200px;
     }
 
-    #rodape .coluna-sobre p {
-        text-align: center;
+    .coluna-logo,
+    .coluna-sobre,
+    .coluna-contato {
+        flex: 1;
+        min-width: 280px;
     }
 
-    #rodape .coluna-contato .contato-item {
-        justify-content: center;
-    }
-}
-
-/* Telas de celulares (até 480px) */
-@media (max-width: 480px) {
-    #cabecalho {
-        flex-direction: column;
-        gap: 10px;
-        padding: 10px 1rem;
+    .coluna-logo {
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        img { width: 50px; height: auto; }
+        h1 { font-size: 1.8rem; font-weight: bold; margin: 0; }
     }
     
-    .agendamento-container {
-        padding-top: 150px; /* Mais espaço para o header empilhado */
-    }
-
-    .card-agendamento {
-        padding: 1rem;
-    }
-
-    .card-agendamento h1 {
+    .coluna-sobre h3,
+    .coluna-contato h3 {
         font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+        font-weight: bold;
     }
 
-    #agendar-horario {
-        padding: 1rem;
+    .coluna-sobre p {
+        font-size: 1rem;
+        text-align: justify;
+        line-height: 1.6;
     }
+
+    .coluna-contato .contato-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 0.5rem;
+
+        .icone img {
+            width: 20px;
+            height: auto;
+        }
+    }
+
+    .divisao {
+        width: 85%;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 1.5rem;
+    }
+
+    .text-center {
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+}
+
+@media (max-width: 820px) {
+    .card-agendamento { padding: 1.5rem; }
+    #rodape .conteudo-rodape { gap: 2.5rem; justify-content: space-around; }
+}
+
+@media (max-width: 640px) {
+    body { font-size: 16px; }
+    #cabecalho { padding: 10px 4vw; }
+    .agendamento-container { padding: 100px 1rem 40px 1rem; }
+    .card-agendamento {
+        h1 { font-size: 1.5rem; }
+        h2 { font-size: 1.2rem; }
+    }
+    #rodape {
+        text-align: center;
+        .conteudo-rodape { flex-direction: column; align-items: center; gap: 2rem; }
+        .coluna-logo, .coluna-sobre, .coluna-contato { min-width: 100%; max-width: 400px; }
+        .coluna-logo { justify-content: center; }
+        .coluna-sobre p { text-align: center; }
+        .coluna-contato .contato-item { justify-content: center; }
+    }
+}
+
+@media (max-width: 480px) {
+    #cabecalho { flex-direction: column; gap: 10px; padding: 10px 1rem; }
+    .agendamento-container { padding-top: 150px; }
+    .card-agendamento { padding: 1rem; h1 { font-size: 1.3rem; } }
+    #agendar-horario { padding: 1rem; }
 }

@@ -1,14 +1,10 @@
-// Importa a fonte do Google
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100..900&display=swap');
 
-// --- VARIÁVEIS ---
-// Definir variáveis para cores e fontes simplifica futuras alterações no design
 $primary-red: #a80c11;
 $primary-white: #ffffff;
 $light-gray: #f9f9f9;
 $font-family-base: "Roboto Condensed", sans-serif;
 
-// --- ESTILOS GERAIS ---
 * {
     box-sizing: border-box;
     font-family: $font-family-base;
@@ -24,7 +20,6 @@ body {
     }
 }
 
-// Classe de utilidade para o título da seção
 .ponto {
     display: flex;
     position: relative;
@@ -42,7 +37,6 @@ body {
         font-size: 1.5rem;
     }
 
-    // Media Queries para o título
     @media (max-width: 992px) {
         padding-left: 2rem;
         padding-top: 100px;
@@ -58,7 +52,6 @@ body {
     }
 }
 
-// --- CABEÇALHO ---
 #cabecalho {
     position: fixed;
     top: 0;
@@ -118,7 +111,6 @@ body {
         }
     }
 
-    // Media Queries para o Cabeçalho
     @media (max-width: 992px) {
         padding: 0.7rem 2rem;
     }
@@ -133,7 +125,6 @@ body {
     }
 }
 
-// --- SEÇÃO FAQ ---
 .faq {
     max-width: 800px;
     margin: 1rem auto 3rem auto;
@@ -147,7 +138,6 @@ body {
         overflow: hidden;
         transition: all 0.3s ease;
 
-        // Estilos quando o item está ativo (aberto)
         &.active {
             .faq-answer {
                 max-height: 300px;
@@ -206,7 +196,6 @@ body {
         color: $primary-red;
     }
 
-    // Media Queries para a seção FAQ
     @media (max-width: 768px) {
         margin-left: 0.5rem;
         margin-right: 0.5rem;
@@ -226,7 +215,6 @@ body {
     }
 }
 
-// --- RODAPÉ ---
 #rodape {
     display: flex;
     flex-direction: column;
@@ -315,7 +303,6 @@ body {
         font-size: 0.85rem;
     }
 
-    // Media Queries para o Rodapé
     @media (max-width: 992px) {
         .conteudo-rodape {
             gap: 2.5rem;
@@ -330,7 +317,6 @@ body {
             gap: 2rem;
         }
 
-        // CORREÇÃO: Altera o alinhamento de texto especificamente
         .coluna-sobre {
             text-align: center;
             

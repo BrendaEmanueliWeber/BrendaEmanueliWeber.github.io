@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <link rel="shortcut icon" href="images/favicon.png" type="image/png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Doe Vida</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Doe Vida - Agendamento</title>
     <link rel="stylesheet" href="styleagend.css" />
 </head>
 
-<body>  
+<body>
+    <!-- HEADER -->
     <header id="cabecalho">
         <div class="logo">
             <img src="images/logo.png" alt="logo">
@@ -21,136 +21,110 @@
         </nav>
     </header>
 
+    <!-- CONTAINER PRINCIPAL -->
     <div class="agendamento-container">
         <div class="card-agendamento">
             <h1>Área de Agendamento - Doe Vida</h1>
 
-            <!-- LOGIN -->
-            <div id="login" class="login-box">
-                <h2>Login</h2>
-                <form>
-                    <input type="email" placeholder="Digite seu e-mail">
-                    <input type="password" placeholder="Digite sua senha">
-                    <button type="submit">Entrar</button>
-                </form>
-            </div>
-
-            <!-- ÁREA DO USUÁRIO -->
-            <div id="user-area" class="hidden">
-                <!-- Navegação interna -->
-                <div class="user-menu">
-                    <button onclick="mostrarSecao('meus-agendamentos')">Meus Agendamentos</button>
+            <!-- ========================================== -->
+            <!--   ÁREA DE LOGIN E CADASTRO (VISÍVEL)       -->
+            <!-- ========================================== -->
+            <div id="auth-area">
+                <!-- FORMULÁRIO DE LOGIN -->
+                <div id="login-box">
+                    <h2>Login</h2>
+                    <form id="login-form">
+                        <input type="email" placeholder="Digite seu e-mail" required>
+                        <input type="password" placeholder="Digite sua senha" required>
+                        <button type="submit">Entrar</button>
+                    </form>
+                    <p class="auth-switch">Não tem uma conta? <button type="button"
+                            id="show-register-btn">Cadastre-se</button></p>
                 </div>
 
-                <!-- Meus Agendamentos -->
-                <div id="meus-agendamentos" class="hidden">
+                <!-- FORMULÁRIO DE CADASTRO (ESCONDIDO) -->
+                <div id="register-box" class="hidden">
+                    <h2>Cadastro</h2>
+                    <form id="register-form">
+                        <input type="email" placeholder="Digite seu e-mail" required>
+                        <input type="password" placeholder="Crie uma senha (mín. 8 caracteres)" required>
+                        <button type="submit">Cadastrar</button>
+                    </form>
+                    <p class="auth-switch">Já tem uma conta? <button type="button" id="show-login-btn">Faça
+                            Login</button></p>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!--   ÁREA DO USUÁRIO LOGADO (ESCONDIDA)       -->
+            <!-- ========================================== -->
+            <div id="user-area" class="hidden">
+                <div class="user-header">
                     <h2>Seus Agendamentos</h2>
-                    <ul>
-                        <li>🩸 25/08/2025 - 14:00</li>
-                        <li>🩸 12/09/2025 - 09:30</li>
-                    </ul>
+                    <!-- BOTÃO DE SAIR ADICIONADO AQUI -->
+                    <button id="logout-btn" class="logout-button">Sair</button>
+                </div>
 
-                    <!-- Nova Seção: Agendar Horário -->
-                    <div id="agendar-horario">
-                        <h2>Agendar Horário</h2>
-                        <form>
-                            <input type="text" name="nome" placeholder="Nome completo" required>
-                            <input type="date" name="data_nascimento" placeholder="Data de nascimento" required>
-                            <input type="text" name="cpf_rg" placeholder="CPF ou número do RG" required>
-                            <input type="tel" name="telefone" placeholder="Telefone de contato" required>
-                            <input type="email" name="email" placeholder="E-mail" required>
-                            <input type="date" name="data_agendamento" placeholder="Data do agendamento" required>
-                            <input type="time" id="hora" name="hora_agendamento" min="07:30" max="19:00" step="1800"
-                                required placeholder="Hora do agendamento" required>
-                            <button type="submit">Confirmar Agendamento</button>
-                        </form>
-                    </div>
+                <ul id="lista-agendamentos">
+                    <!-- Agendamentos serão preenchidos pelo JS -->
+                </ul>
 
+                <div id="agendar-horario">
+                    <h2>Agendar Nova Doação</h2>
+                    <form id="agendamento-form">
+                        <input type="text" name="nome_completo" placeholder="Nome completo" required>
+                        <input type="date" name="data_nascimento" placeholder="Data de nascimento" required>
+                        <input type="text" name="cpf_rg" placeholder="CPF ou número do RG" required>
+                        <input type="tel" name="telefone" placeholder="Telefone de contato" required>
+                        <input type="email" name="email" placeholder="E-mail de contato" required>
+                        <input type="date" name="data_agendamento" required>
+                        <input type="time" name="hora_agendamento" min="07:30" max="19:00" step="1800" required>
+                        <button type="submit">Confirmar Agendamento</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        // Simulação de login
-        const loginForm = document.querySelector('#login form');
-        const loginDiv = document.getElementById('login');
-        const userArea = document.getElementById('user-area');
+    <!-- JANELA MODAL (se precisar no futuro) -->
+    <div id="modal-container" class="hidden">
+        <div id="modal-content">
+            <h2>Detalhes do Agendamento</h2>
+            <div id="modal-details"></div>
+            <button id="modal-close-btn">Fechar</button>
+        </div>
+    </div>
 
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            loginDiv.classList.add('hidden');
-            userArea.classList.remove('hidden');
-            mostrarSecao('meus-agendamentos');
-        });
-
-        function mostrarSecao(secaoId) {
-            document.querySelectorAll('#user-area > div').forEach(div => div.classList.add('hidden'));
-            document.getElementById(secaoId).classList.remove('hidden');
-        }
-    </script>
-
-
+    <!-- FOOTER -->
     <footer id="rodape">
         <div class="conteudo-rodape">
             <div class="coluna-logo">
-                <div class="logo">
-                    <img src="images/logo2.png" alt="logo">
+                <div class="logo"><img src="images/logo2.png" alt="logo">
                     <h1>Doe Vida</h1>
                 </div>
             </div>
-
             <div class="coluna-sobre">
                 <h3>Sobre</h3>
-                <p>
-                    A Doe Vida é uma clínica de doação de sangue em Toledo – PR, que acredita no poder da
-                    solidariedade
-                    para salvar vidas. Com segurança e cuidado, transformamos sua doação em esperança para quem
-                    precisa.
-                </p>
+                <p>A Doe Vida é uma clínica de doação de sangue em Toledo – PR, que acredita no poder da solidariedade
+                    para salvar vidas...</p>
             </div>
-
             <div class="coluna-contato">
                 <h3>Contato</h3>
                 <div class="contato-item">
-                    <div class="icone"><img src="images/telefone.png" alt=""></div>
-                    <span>+55 (44) 99801-1293</span>
+                    <div class="icone"><img src="images/telefone.png" alt=""></div><span>+55 (44) 99801-1293</span>
                 </div>
                 <div class="contato-item">
-                    <div class="icone"><img src="images/gmail.png" alt=""></div>
-                    <span>clinica.doevida@gmail.com</span>
+                    <div class="icone"><img src="images/gmail.png" alt=""></div><span>clinica.doevida@gmail.com</span>
                 </div>
             </div>
         </div>
-
         <div class="divisao"></div>
-
         <div class="text-center">© 2025 Doe Vida - Todos os direitos reservados.</div>
     </footer>
 
-    <script>
-        window.addEventListener("scroll", () => {
-            const header = document.getElementById("cabecalho");
-            if (window.scrollY > 50) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        });
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        document.querySelectorAll("#cabecalho .menu button").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const destino = btn.getAttribute("data-href");
-                if (destino.startsWith("#")) {
-                    // rola até a seção da mesma página
-                    document.querySelector(destino).scrollIntoView({ behavior: "smooth" });
-                } else {
-                    // redireciona para outra página
-                    window.location.href = destino;
-                }
-            });
-        });
-
-    </script>
+    <script src="agendamento.js" defer></script>
 </body>
+
 </html>

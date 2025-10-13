@@ -11,16 +11,6 @@
 </head>
 
 <body>
-    <!-- <header id="cabecalho">
-        <div class="logo"><img src="images/logo.png" alt="logo" style="width: 15vw; height: auto;"></div>
-        <nav class="menu">
-            <button><a href="#cabecalho">Início</a></button>
-            <button><a href="#requisitos">Requisitos</a></button>
-            <button><a href="#agendamento">Agendar</a></button>
-            <button><a href="#rodape">Contato</a></button>
-        </nav>
-    </header> -->
-
     <div id="abc"></div>
 
     <header id="cabecalho">
@@ -60,8 +50,6 @@
             </svg>
         </div>
     </div>
-
-
 
     <div id="requisitos">
         <div class="ponto">
@@ -258,7 +246,6 @@
                 }
             });
 
-            // Tornar os botões clicáveis como links
             document.querySelectorAll('#cabecalho button').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const href = btn.getAttribute('data-href');

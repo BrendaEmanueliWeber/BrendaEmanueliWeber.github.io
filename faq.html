@@ -10,8 +10,6 @@
 </head>
 
 <body>
-
-    <!-- Cabeçalho -->
     <header id="cabecalho">
         <div class="logo">
             <img src="images/logo.png" alt="logo">
@@ -23,7 +21,6 @@
     </header>
 
 
-    <!-- Perguntas Frequentes -->
     <div class="ponto">
         <img src="images/s-p.png" alt="">
         <h2>Perguntas Frequentes</h2>
@@ -177,7 +174,6 @@
         </div>
     </section>
 
-    <!-- Rodapé -->
     <footer id="rodape">
         <div class="conteudo-rodape">
             <div class="coluna-logo">
@@ -236,10 +232,8 @@
             btn.addEventListener("click", () => {
                 const destino = btn.getAttribute("data-href");
                 if (destino.startsWith("#")) {
-                    // rola até a seção da mesma página
                     document.querySelector(destino).scrollIntoView({ behavior: "smooth" });
                 } else {
-                    // redireciona para outra página
                     window.location.href = destino;
                 }
             });
