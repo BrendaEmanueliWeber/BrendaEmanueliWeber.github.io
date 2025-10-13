@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 * {
   box-sizing: border-box;
@@ -8,6 +9,10 @@ body {
   margin: 0;
   font-size: 18px;
   background: #fef2f2;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 .hidden {
@@ -225,93 +230,6 @@ body {
   border: 1px solid #e5e7eb;
 }
 
-#modal-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  padding: 1rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
-}
-#modal-container:not(.hidden) {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-#modal-content {
-  background: #fff;
-  padding: 2rem 2.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 550px;
-  text-align: left;
-  transform: translateY(-20px);
-  transition: transform 0.3s ease-in-out;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-#modal-container:not(.hidden) #modal-content {
-  transform: translateY(0);
-}
-#modal-content h2 {
-  margin-top: 0;
-  font-size: 1.6rem;
-  color: #a80c11;
-  border-bottom: 2px solid #fca5a5;
-  padding-bottom: 0.8rem;
-  margin-bottom: 1.5rem;
-}
-#modal-content #modal-details p {
-  margin: 1rem 0;
-  line-height: 1.7;
-  font-size: 1.05rem;
-  color: rgb(76.5, 76.5, 76.5);
-  border-bottom: 1px solid #f3f4f6;
-  padding-bottom: 1rem;
-}
-#modal-content #modal-details p:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-#modal-content #modal-details p strong {
-  color: #333;
-  font-weight: 600;
-  display: block;
-  font-size: 1.1rem;
-  margin-bottom: 4px;
-}
-#modal-content #modal-close-btn {
-  display: block;
-  width: 100%;
-  margin-top: 2.5rem;
-  padding: 0.9rem;
-  background-color: #a80c11;
-  color: #fff;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-#modal-content #modal-close-btn:hover {
-  background-color: #830a0e;
-  transform: scale(1.02);
-}
-
-body.modal-open {
-  overflow: hidden;
-}
-
 #rodape {
   display: flex;
   flex-direction: column;
@@ -446,4 +364,87 @@ body.modal-open {
   #agendar-horario {
     padding: 1rem;
   }
+}
+/* --- ESTILOS DA JANELA MODAL (AGORA NO FINAL PARA PRIORIDADE MÁXIMA) --- */
+#modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+#modal-container:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#modal-content {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 550px;
+  text-align: left;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease-in-out;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+#modal-container:not(.hidden) #modal-content {
+  transform: translateY(0);
+}
+#modal-content h2 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  color: #a80c11;
+  border-bottom: 2px solid #fca5a5;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+#modal-content #modal-details p {
+  margin: 1rem 0;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  color: rgb(76.5, 76.5, 76.5);
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 1rem;
+}
+#modal-content #modal-details p:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+#modal-content #modal-details p strong {
+  color: #333;
+  font-weight: 600;
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+#modal-content #modal-close-btn {
+  display: block;
+  width: 100%;
+  margin-top: 2.5rem;
+  padding: 0.9rem;
+  background-color: #a80c11;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+#modal-content #modal-close-btn:hover {
+  background-color: #830a0e;
+  transform: scale(1.02);
 }/*# sourceMappingURL=styleagend.css.map */
