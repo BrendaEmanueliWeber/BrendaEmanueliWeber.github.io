@@ -101,11 +101,39 @@ agendamentoForm.addEventListener('submit', async (event) => {
         alert('Sessão expirada. Faça o login novamente para agendar.');
         return;
     }
+
     const formData = new FormData(event.target);
-    const agendamentoData = Object.fromEntries(formData.entries());
-    const { data, error } = await supabaseClient.from('agendamentos').insert({ ...agendamentoData, user_id: user.id });
-    if (error) {
-        alert('Erro ao confirmar agendamento: ' + error.message);
+
+    const perfilData = {
+        user_id: user.id,
+        nome_completo: formData.get('nome_completo'),
+        data_nascimento: formData.get('data_nascimento'),
+        cpf_rg: formData.get('cpf_rg'),
+        telefone: formData.get('telefone'),
+        email: formData.get('email'),
+    };
+
+    const agendamentoData = {
+        user_id: user.id,
+        data_agendamento: formData.get('data_agendamento'),
+        hora_agendamento: formData.get('hora_agendamento'),
+    };
+
+    const { error: perfilError } = await supabaseClient
+        .from('perfis')
+        .upsert(perfilData);
+
+    if (perfilError) {
+        alert('Erro ao salvar seus dados: ' + perfilError.message);
+        return;
+    }
+
+    const { error: agendamentoError } = await supabaseClient
+        .from('agendamentos')
+        .insert(agendamentoData);
+
+    if (agendamentoError) {
+        alert('Erro ao confirmar agendamento: ' + agendamentoError.message);
     } else {
         alert('Agendamento confirmado com sucesso!');
         agendamentoForm.reset();

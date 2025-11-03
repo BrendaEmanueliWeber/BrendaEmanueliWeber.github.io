@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 * {
   box-sizing: border-box;
@@ -365,7 +364,6 @@ body.modal-open {
     padding: 1rem;
   }
 }
-/* --- ESTILOS DA JANELA MODAL (AGORA NO FINAL PARA PRIORIDADE MÁXIMA) --- */
 #modal-container {
   position: fixed;
   top: 0;
