@@ -1,7 +1,10 @@
 const SUPABASE_URL = "https://SEU-PROJETO.supabase.co";
 const SUPABASE_ANON_KEY = "SUA-ANON-KEY";
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabase = supabase.createClient(
+    "https://lddyxmomzwbmfughelbd.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxkZHl4bW9tendibWZ1Z2hlbGJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAzMzU2MjcsImV4cCI6MjA3NTkxMTYyN30.yNOFvtsQ-aUvLboOAfVg7lq4Hh9rIcBbhDf7Vu-0qq8"
+);
 
 async function cadastrar(email, senha) {
     const { data, error } = await supabase.auth.signUp({
