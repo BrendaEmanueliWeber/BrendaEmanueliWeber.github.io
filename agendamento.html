@@ -29,8 +29,9 @@
                 <div id="login-box">
                     <h2>Login</h2>
                     <form id="login-form">
-                        <input type="email" placeholder="Digite seu e-mail" required>
-                        <input type="password" placeholder="Digite sua senha" required>
+                        <input type="email" placeholder="Digite seu e-mail" required autocapitalize="none"
+                            autocorrect="off" autocomplete="email" inputmode="email">
+                        <input type="password" placeholder="Digite sua senha" required autocomplete="current-password">
                         <button type="submit">Entrar</button>
                     </form>
                     <p class="auth-switch">Não tem uma conta? <button type="button"
@@ -111,7 +112,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="agendamento.js"></script>
+    <script src="agendamento.js"></script>
 
 </body>
 
