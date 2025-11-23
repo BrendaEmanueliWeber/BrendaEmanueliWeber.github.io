@@ -212,7 +212,7 @@ body.modal-open {
 #lista-agendamentos li {
     display: flex;
     justify-content: space-between;
-    align-items: center; // <-- GARANTE alinhamento perfeito
+    align-items: center; 
     background: #ffffff;
     padding: 16px 22px;
     border-radius: 12px;
@@ -223,7 +223,7 @@ body.modal-open {
     .info {
         display: flex;
         flex-direction: column;
-        justify-content: center; // <-- CENTRALIZA as duas linhas
+        justify-content: center; 
 
         .data {
             font-weight: 700;
@@ -248,7 +248,7 @@ body.modal-open {
         font-weight: 600;
         transition: 0.25s ease;
         box-shadow: 0 4px 10px rgba(177, 0, 0, 0.25);
-        align-self: center; // <-- GARANTE alinhamento vertical do botão
+        align-self: center; 
 
         &:hover {
             background: linear-gradient(135deg, #8a0000, #c40000);
