@@ -127,7 +127,6 @@ async function carregarAgendamentos() {
         const li = document.createElement("li");
         li.classList.add("agendamento-item");
 
-        // HTML do item com a classe CORRETA (details-btn)
         li.innerHTML = `
     <div class="info">
         <span class="data">${a.data_agendamento} — ${a.horario}</span>
@@ -140,7 +139,6 @@ async function carregarAgendamentos() {
         lista.appendChild(li);
     });
 
-    // Ativar botões de detalhes (seleciona pela classe que estamos usando)
     document.querySelectorAll(".details-btn").forEach(btn => {
         btn.addEventListener("click", (e) => {
             const id = e.currentTarget.dataset.id;
